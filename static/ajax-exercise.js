@@ -21,10 +21,17 @@ $('#get-fortune-button').on('click', showFortune);
 
 function showWeather(evt) {
     evt.preventDefault();
+    // debugger;
 
-    var url = "/weather?zipcode=" + $("#zipcode-field").val();
+    var url = "/weather.json?zipcode=" + $("#zipcode-field").val();
 
     // TODO: request weather with that URL and show the forecast in #weather-info
+
+    $.get(url, function (result) {
+        // $('#weather-info').html(result["forecast"]);
+        $('#weather-info').html(result.forecast);
+        console.log(result);
+    });
 }
 
 $("#weather-form").on('submit', showWeather);
